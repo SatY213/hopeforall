@@ -1,0 +1,88 @@
+Adherent/Volunteer 
+- id: integer (primary key)
+- name: string
+- surname: string
+- birth_date: date
+- role: string
+- is_admin: boolean
+- address: string
+- email: string
+- phone_number: string
+- photo: string
+- type: string ("Adherent" or "Volunteer")
+
+Project 
+- id: integer (primary key)
+- label: string
+- description: text
+- start_date: date
+- end_date: date
+- budget: decimal
+
+Participation 
+- id: integer (primary key)
+- project_id: integer (foreign key referencing Project.id)
+- adherent_volunteer_id: integer (foreign key referencing Adherent_Volunteer.id)
+
+Donor 
+- id: integer (primary key)
+- name: string
+- surname: string
+- company_name: string
+- address: string
+- email: string
+- phone_number: string
+- is_validated: boolean
+- type: string ("Society" or "Individual")
+
+Donation 
+- id: integer (primary key)
+- donor_id: integer (foreign key referencing Donor.id)
+- donation_type: string ("Money" or "Product")
+- amount: decimal
+- quantity: integer
+- product_name: string
+- donation_date: date
+
+Product 
+- id: integer (primary key)
+- name: string
+- price: decimal
+
+Purchase 
+- id: integer (primary key)
+- project_id: integer (foreign key referencing Project.id)
+- product_id: integer (foreign key referencing Product.id)
+- quantity: integer
+- price: decimal
+
+Membership 
+- id: integer (primary key)
+- adherent_volunteer_id: integer (foreign key referencing Adherent_Volunteer.id)
+
+Fee 
+- id: integer (primary key)
+- membership_id: integer (foreign key referencing Membership.id)
+- amount: decimal
+- date: date
+
+Needers 
+id: integer (primary key)
+name: string
+surname: string
+birth_date: date
+function: string
+address: string
+phone_number: string
+type: string ("Père de famille", "Mère de famille", "Mère veuve", "Mère divorcée", etc.)number_of_children: integer
+salary_amount: decimal
+description: text
+
+
+
+adherent can add , edit , delete , list (projects,purchases,donors,donations,needers)
+also have the ability to master detail (adherents/volunteers with cotisation and projects , Projects with adherents/volunteers and purchases, Donations with donors, print donnation in PDF , print adherent card )
+
+and the administrator can do everything adherent can do  and also have abilities to 
+add,edit,delete,list all adherents/volunteers,
+add,edit,delete,list all cotisations
